@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0f14" />
+  <meta name="description"
+    content="Arborae — software pulito, modulare e affidabile. UI curate, automazioni intelligenti e DevOps semplici." />
+  <title>Arborae</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Arborae" />
+  <meta property="og:description" content="Software pulito • UI curate • Automazioni intelligenti • DevOps semplici" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/social-preview.png" />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="bg">
+    <div class="grid-overlay"></div>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+  </div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="Arborae Home">
+        <img src="assets/logo.svg" alt="Arborae logo" width="28" height="28" />
+        <span>Arborae</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#projects">Progetti</a>
+        <a href="#principles">Principi</a>
+        <a href="#community">Community</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn ghost" href="https://github.com/arborae" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="btn" href="https://github.com/orgs/arborae/discussions" target="_blank"
+          rel="noreferrer">Discussions</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <div class="kicker">
+          <span class="dot"></span>
+          <span>Open-source organization</span>
+        </div>
+
+        <h1>
+          Software <span class="accent-text">pulito</span>,<br>modulare e affidabile.
+        </h1>
+
+        <p class="lead">
+          Costruiamo progetti utili, belli da usare e facili da mantenere — con un’ossessione sana per
+          UX chiare, automazioni intelligenti e DevOps semplici.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn" href="#projects">Esplora i progetti</a>
+          <a class="btn ghost" href="https://github.com/arborae/.github/blob/main/SECURITY.md" target="_blank"
+            rel="noreferrer">
+            Security policy
+          </a>
+        </div>
+
+        <div class="topics" role="list" aria-label="Topics">
+          <span class="pill" role="listitem">home-assistant</span>
+          <span class="pill" role="listitem">docker</span>
+          <span class="pill" role="listitem">automation</span>
+          <span class="pill" role="listitem">devops</span>
+          <span class="pill" role="listitem">ui</span>
+        </div>
+      </div>
+
+      <div class="hero-right" aria-hidden="true">
+        <div class="hero-visual">
+          <div class="banner-card" id="hero-card">
+            <img class="banner-bg" src="assets/banner.svg" alt="" />
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <div class="banner-header">
+                <img src="assets/logo.svg" alt="" width="42" height="42" />
+                <div class="header-text">
+                  <div class="mini-title">Arborae</div>
+                  <div class="mini-sub">Pragmatici. Documentati.</div>
+                </div>
+              </div>
+
+              <div class="banner-visual">
+                <div class="fake-terminal">
+                  <div class="term-line"><span class="term-p">➜ ~</span> <span class="term-c">docker compose up
+                      -d</span></div>
+                  <div class="term-line"><span class="term-o">✔ Network arborae-net created</span></div>
+                  <div class="term-line"><span class="term-o">✔ Container core started</span></div>
+                  <div class="term-line"><span class="term-p">➜ ~</span> <span class="term-w">_</span></div>
+                </div>
+              </div>
+
+              <div class="banner-stats">
+                <div class="b-stat">
+                  <div class="b-label">Focus</div>
+                  <div class="b-val">Stabilità</div>
+                </div>
+                <div class="b-stat">
+                  <div class="b-label">Style</div>
+                  <div class="b-val">Modulare</div>
+                </div>
+                <div class="b-stat">
+                  <div class="b-label">UX</div>
+                  <div class="b-val">Chiara</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="section-head">
+        <h2>Progetti in evidenza</h2>
+        <p>Repository principali, con obiettivo utilità reale e manutenzione semplice.</p>
+      </div>
+
+      <div class="cards-grid">
+        <article class="card">
+          <div class="card-top">
+            <div class="badge green">Featured</div>
+            <h3>d2ha — Docker to Home Assistant</h3>
+            <p>
+              Integrazione e controllo dei container Docker dentro Home Assistant: discovery, sensori,
+              azioni, update e monitoraggio.
+            </p>
+          </div>
+          <div class="card-actions">
+            <a class="btn small" href="https://arborae.github.io/docker2homeassistant/" target="_blank"
+              rel="noreferrer">Docs</a>
+            <a class="btn small ghost" href="https://github.com/arborae/docker2homeassistant" target="_blank"
+              rel="noreferrer">Repo</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="badge violet">In sviluppo</div>
+            <h3>ha-appliance</h3>
+            <p>
+              Appliance/stack modulare per semplificare deploy, wizard, App Store e gestione container in modo
+              user‑friendly.
+            </p>
+          </div>
+          <div class="card-actions">
+            <a class="btn small" href="https://github.com/arborae/ha-appliance" target="_blank"
+              rel="noreferrer">Repo</a>
+            <a class="btn small ghost" href="https://github.com/orgs/arborae/discussions" target="_blank"
+              rel="noreferrer">Roadmap</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="badge blue">Community</div>
+            <h3>Contribuire</h3>
+            <p>
+              PR piccole e mirate, documentazione aggiornata, review rapide. Se qualcosa confonde, per noi è un bug.
+            </p>
+          </div>
+          <div class="card-actions">
+            <a class="btn small" href="https://github.com/arborae/.github/blob/main/CONTRIBUTING.md" target="_blank"
+              rel="noreferrer">CONTRIBUTING</a>
+            <a class="btn small ghost" href="https://github.com/arborae?tab=repositories" target="_blank"
+              rel="noreferrer">All repos</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="principles" class="section">
+      <div class="section-head">
+        <h2>Principi</h2>
+        <p>Regole semplici che tengono i progetti puliti nel tempo.</p>
+      </div>
+
+      <div class="principles">
+        <div class="principle-item">
+          <div class="icon-box">📚</div>
+          <div>
+            <h4>Documentazione prima di tutto</h4>
+            <p>Se non è spiegato bene, non è finito.</p>
+          </div>
+        </div>
+        <div class="principle-item">
+          <div class="icon-box">🧩</div>
+          <div>
+            <h4>Modularità &amp; manutenzione</h4>
+            <p>Preferiamo architetture chiare a “hack veloci”.</p>
+          </div>
+        </div>
+        <div class="principle-item">
+          <div class="icon-box">✨</div>
+          <div>
+            <h4>UX chiara</h4>
+            <p>Se qualcosa confonde, è un bug. Punto.</p>
+          </div>
+        </div>
+        <div class="principle-item">
+          <div class="icon-box">🔐</div>
+          <div>
+            <h4>Sicurezza &amp; trasparenza</h4>
+            <p>Policy e processi chiari, disclosure responsabile.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="community" class="section">
+      <div class="section-head">
+        <h2>Community</h2>
+        <p>Domande, idee, bug e PR: tutto al posto giusto.</p>
+      </div>
+
+      <div class="cards-grid">
+        <article class="card">
+          <div class="card-top">
+            <h3>Discussions</h3>
+            <p>Idee, roadmap, domande e supporto generale.</p>
+          </div>
+          <div class="card-actions">
+            <a class="btn small" href="https://github.com/orgs/arborae/discussions" target="_blank"
+              rel="noreferrer">Apri Discussions</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <h3>Issues</h3>
+            <p>Bug e feature request con template guidati.</p>
+          </div>
+          <div class="card-actions">
+            <a class="btn small ghost" href="https://github.com/arborae?tab=repositories" target="_blank"
+              rel="noreferrer">Scegli repo</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <h3>Security</h3>
+            <p>Segnalazioni responsabili e policy comune.</p>
+          </div>
+          <div class="card-actions">
+            <a class="btn small" href="https://github.com/arborae/.github/blob/main/SECURITY.md" target="_blank"
+              rel="noreferrer">Leggi policy</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="cta-box" style="margin-top: 40px;">
+        <div>
+          <h3>Vuoi dare una mano?</h3>
+          <p>Anche una PR piccola è benvenuta. Se vuoi, parti da una issue “good first issue”.</p>
+        </div>
+        <a class="btn" href="https://github.com/arborae?tab=repositories" target="_blank" rel="noreferrer">Esplora i
+          repo</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-left">
+        <img src="assets/logo.svg" alt="" width="20" height="20" />
+        <span>© Arborae</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://github.com/arborae" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://github.com/orgs/arborae/discussions" target="_blank" rel="noreferrer">Discussions</a>
+        <a href="https://github.com/arborae/.github" target="_blank" rel="noreferrer">.github</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+
+  <script>
+    // 3D Tilt Effect
+    const card = document.getElementById('hero-card');
+
+    if (card) {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Calculate center
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        // Calculate rotation (max 15deg)
+        const rotateX = ((y - centerY) / centerY) * -8;
+        const rotateY = ((x - centerX) / centerX) * 8;
+
+        // Parallax for image bg
+        const moveX = ((x - centerX) / centerX) * -10;
+        const moveY = ((y - centerY) / centerY) * -10;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+        // Move inner background
+        const bg = card.querySelector('.banner-bg');
+        if (bg) {
+          bg.style.transform = `scale(1.1) translate(${moveX}px, ${moveY}px)`;
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+        const bg = card.querySelector('.banner-bg');
+        if (bg) {
+          bg.style.transform = 'scale(1)';
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

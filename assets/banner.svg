@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#0b0f14"/><stop offset="1" stop-color="#101826"/></linearGradient>
+    <linearGradient id="acc" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#2ea043"/><stop offset="0.55" stop-color="#1f6feb"/><stop offset="1" stop-color="#8250df"/></linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="24" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#ffffff" stroke-opacity="0.04"/></pattern>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+  
+  <!-- Abstract Wave -->
+  <path d="M-50 450 C 150 350, 300 650, 500 450 C 700 250, 750 150, 850 100" stroke="url(#acc)" stroke-width="14" fill="none" opacity="0.6" filter="url(#glow)"/>
+  
+  <!-- Decorative Orbs -->
+  <circle cx="150" cy="150" r="180" fill="url(#acc)" opacity="0.08"/>
+  <circle cx="650" cy="450" r="220" fill="url(#acc)" opacity="0.06"/>
+  
+  <!-- Subtle accent lines -->
+  <path d="M0 600 L800 0" stroke="url(#acc)" stroke-width="2" opacity="0.05" />
+</svg>
