@@ -1,0 +1,100 @@
+<!doctype html>
+<!-- Sorgente della social preview: renderizzare a 1200x630 in assets/social-preview.png
+     es. firefox &#45;&#45;headless &#45;&#45;screenshot social-preview.png &#45;&#45;window-size=1200,630 <url> -->
+<html lang="it">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    * { margin: 0; box-sizing: border-box; }
+
+    html, body { width: 1200px; height: 630px; overflow: hidden; }
+
+    body {
+      font-family: 'Space Grotesk', 'Inter', -apple-system, sans-serif;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% -10%, rgba(0, 181, 133, 0.22), transparent 60%),
+        radial-gradient(ellipse 50% 50% at 0% 110%, rgba(95, 179, 166, 0.12), transparent 60%),
+        #070b0a;
+      color: #eef4f2;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 56px 56px;
+      -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, black 30%, transparent 85%);
+      mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, black 30%, transparent 85%);
+    }
+
+    .content {
+      position: relative;
+      padding: 0 90px;
+      display: flex;
+      flex-direction: column;
+      gap: 34px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand img { width: 84px; height: 84px; }
+
+    .brand span {
+      font-size: 54px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: 66px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.08;
+    }
+
+    h1 .accent {
+      background: linear-gradient(120deg, #34d399, #5fb3a6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .sub {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      font-size: 24px;
+      color: #9db3ad;
+      letter-spacing: 0.01em;
+    }
+
+    .sub b { color: #5fb3a6; font-weight: 600; }
+  </style>
+</head>
+
+<body>
+  <div class="grid"></div>
+  <div class="content">
+    <div class="brand">
+      <img src="logo.svg" alt="" />
+      <span>Arborae</span>
+    </div>
+    <h1>Software <span class="accent">pulito</span>,<br>modulare e affidabile.</h1>
+    <p class="sub">UI curate <b>•</b> Automazioni intelligenti <b>•</b> DevOps semplici</p>
+  </div>
+</body>
+
+</html>

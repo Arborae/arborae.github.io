@@ -1,3 +1,0 @@
-Nota: index.html usa og:image=assets/social-preview.png per compatibilità.
-Qui trovi social-preview.svg. Se vuoi una preview perfetta sui social,
-aggiungi un PNG 1200x630 chiamato assets/social-preview.png.
