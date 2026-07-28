@@ -84,7 +84,7 @@ co-founded by [@giosci1994](https://github.com/giosci1994) and [@chopin94](https
 
 ## 📄 License
 
-The **source code** (HTML/CSS/JS) is released under the [MIT License](LICENSE).
+The **source code** (HTML/CSS/JS) is released under the [GNU GPLv3 License](LICENSE).
 
 > ℹ️ The **Arborae name, logo and branding** (`assets/logo.svg`, `assets/banner.svg`) are property of the Arborae organization — please don't reuse them to represent a different project.
 
@@ -152,7 +152,7 @@ co-fondata da [@giosci1994](https://github.com/giosci1994) e [@chopin94](https:/
 
 ## 📄 Licenza
 
-Il **codice sorgente** (HTML/CSS/JS) è rilasciato con [licenza MIT](LICENSE).
+Il **codice sorgente** (HTML/CSS/JS) è rilasciato con [licenza GNU GPLv3](LICENSE).
 
 > ℹ️ Il **nome, il logo e il branding di Arborae** (`assets/logo.svg`, `assets/banner.svg`) sono dell'organizzazione Arborae — non riutilizzarli per rappresentare un progetto diverso.
 
