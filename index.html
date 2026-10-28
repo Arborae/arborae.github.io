@@ -1,17 +1,17 @@
 <!doctype html>
-<html lang="it">
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#070b0a" />
   <meta name="description"
-    content="Arborae — software pulito, modulare e affidabile. UI curate, automazioni intelligenti e DevOps semplici." />
+    content="Arborae — clean, modular and reliable software. Polished UIs, smart automation and simple DevOps." />
   <title>Arborae</title>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Arborae" />
-  <meta property="og:description" content="Software pulito • UI curate • Automazioni intelligenti • DevOps semplici" />
+  <meta property="og:description" content="Clean software • Polished UIs • Smart automation • Simple DevOps" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://arborae.github.io/" />
   <meta property="og:image" content="https://arborae.github.io/assets/social-preview.png" />
@@ -39,14 +39,18 @@
       </a>
 
       <nav class="nav-links" aria-label="Primary">
-        <a href="#projects">Progetti</a>
-        <a href="#principles">Principi</a>
+        <a href="#projects" data-i18n="nav.projects">Projects</a>
+        <a href="#principles" data-i18n="nav.principles">Principles</a>
         <a href="#founders">Founders</a>
         <a href="#community">Community</a>
       </nav>
 
       <div class="nav-cta">
-        <a class="btn ghost small" href="https://github.com/orgs/arborae/discussions" target="_blank"
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" id="lang-it" aria-label="Italiano" aria-pressed="false">IT</button>
+          <button type="button" id="lang-en" class="active" aria-label="English" aria-pressed="true">EN</button>
+        </div>
+        <a class="btn ghost small nav-discussions" href="https://github.com/orgs/arborae/discussions" target="_blank"
           rel="noreferrer">Discussions</a>
         <a class="btn primary small" href="https://github.com/arborae" target="_blank" rel="noreferrer">GitHub</a>
       </div>
@@ -61,17 +65,17 @@
           <span>open-source organization</span>
         </div>
 
-        <h1>
-          Software <span class="accent-text">pulito</span>,<br>modulare e affidabile.
+        <h1 data-i18n="hero.title" data-i18n-html>
+          <span class="accent-text">Clean</span>, modular,<br>reliable software.
         </h1>
 
-        <p class="lead">
-          Costruiamo progetti utili, belli da usare e facili da mantenere — con un’ossessione sana per
-          UX chiare, automazioni intelligenti e DevOps semplici.
+        <p class="lead" data-i18n="hero.lead">
+          We build useful projects that are a pleasure to use and easy to maintain — with a healthy obsession for
+          clear UX, smart automation and simple DevOps.
         </p>
 
         <div class="hero-actions">
-          <a class="btn primary" href="#projects">Esplora i progetti</a>
+          <a class="btn primary" href="#projects" data-i18n="hero.explore">Explore the projects</a>
           <a class="btn ghost" href="https://github.com/arborae/.github/blob/main/SECURITY.md" target="_blank"
             rel="noreferrer">Security policy</a>
         </div>
@@ -115,20 +119,20 @@
   <main class="container">
     <section id="projects" class="section">
       <div class="section-head reveal">
-        <span class="section-label">// progetti</span>
-        <h2>Progetti in evidenza</h2>
-        <p>Repository principali, con obiettivo utilità reale e manutenzione semplice.</p>
+        <span class="section-label" data-i18n="projects.label">// projects</span>
+        <h2 data-i18n="projects.title">Featured projects</h2>
+        <p data-i18n="projects.lead">Our main repositories, built for real-world use and easy maintenance.</p>
       </div>
 
       <div class="bento">
-        <article class="card wide reveal">
+        <article class="card full reveal">
           <div class="card-glow"></div>
           <div class="card-top">
             <div class="badge green">Featured</div>
             <h3>d2ha — Docker to Home Assistant</h3>
-            <p>
-              Integrazione e controllo dei container Docker dentro Home Assistant: discovery automatica, sensori,
-              azioni, update e monitoraggio — con una web UI moderna e MQTT autodiscovery.
+            <p data-i18n="d2ha.desc">
+              Integrate and control Docker containers inside Home Assistant: automatic discovery, sensors, actions,
+              updates and monitoring — with a modern web UI and MQTT autodiscovery.
             </p>
           </div>
           <div class="card-actions">
@@ -139,29 +143,12 @@
           </div>
         </article>
 
-        <article class="card reveal">
-          <div class="card-top">
-            <div class="badge teal">In sviluppo</div>
-            <h3>ha-appliance</h3>
-            <p>
-              Appliance/stack modulare per semplificare deploy, wizard, App Store e gestione container in modo
-              user‑friendly.
-            </p>
-          </div>
-          <div class="card-actions">
-            <a class="btn primary small" href="https://github.com/arborae/ha-appliance" target="_blank"
-              rel="noreferrer">Repo</a>
-            <a class="btn ghost small" href="https://github.com/orgs/arborae/discussions" target="_blank"
-              rel="noreferrer">Roadmap</a>
-          </div>
-        </article>
-
         <article class="card wide reveal">
           <div class="card-top">
             <div class="badge grey">Community</div>
-            <h3>Contribuire</h3>
-            <p>
-              PR piccole e mirate, documentazione aggiornata, review rapide. Se qualcosa confonde, per noi è un bug.
+            <h3 data-i18n="contrib.title">Contributing</h3>
+            <p data-i18n="contrib.desc">
+              Small, focused PRs, up-to-date docs, quick reviews. If something is confusing, to us it’s a bug.
             </p>
           </div>
           <div class="card-actions">
@@ -175,14 +162,14 @@
         <article class="card reveal">
           <div class="card-top">
             <div class="badge grey">Security</div>
-            <h3>Sicurezza</h3>
-            <p>
-              Segnalazioni responsabili e policy comune per tutti i repository dell’organizzazione.
+            <h3 data-i18n="security.title">Security</h3>
+            <p data-i18n="security.desc">
+              Responsible disclosure and a shared policy for every repository in the organization.
             </p>
           </div>
           <div class="card-actions">
             <a class="btn ghost small" href="https://github.com/arborae/.github/blob/main/SECURITY.md" target="_blank"
-              rel="noreferrer">Leggi policy</a>
+              rel="noreferrer" data-i18n="policy.read">Read the policy</a>
           </div>
         </article>
       </div>
@@ -190,31 +177,31 @@
 
     <section id="principles" class="section">
       <div class="section-head reveal">
-        <span class="section-label">// principi</span>
-        <h2>Principi</h2>
-        <p>Regole semplici che tengono i progetti puliti nel tempo.</p>
+        <span class="section-label" data-i18n="principles.label">// principles</span>
+        <h2 data-i18n="principles.title">Principles</h2>
+        <p data-i18n="principles.lead">Simple rules that keep projects clean over time.</p>
       </div>
 
       <div class="principles">
         <div class="principle reveal">
           <span class="num">01</span>
-          <h4>Documentazione prima di tutto</h4>
-          <p>Se non è spiegato bene, non è finito.</p>
+          <h4 data-i18n="p1.title">Documentation first</h4>
+          <p data-i18n="p1.desc">If it isn’t explained well, it isn’t done.</p>
         </div>
         <div class="principle reveal">
           <span class="num">02</span>
-          <h4>Modularità &amp; manutenzione</h4>
-          <p>Preferiamo architetture chiare a “hack veloci”.</p>
+          <h4 data-i18n="p2.title">Modularity &amp; maintainability</h4>
+          <p data-i18n="p2.desc">We prefer clear architecture to “quick hacks”.</p>
         </div>
         <div class="principle reveal">
           <span class="num">03</span>
-          <h4>UX chiara</h4>
-          <p>Se qualcosa confonde, è un bug. Punto.</p>
+          <h4 data-i18n="p3.title">Clear UX</h4>
+          <p data-i18n="p3.desc">If something is confusing, it’s a bug. Period.</p>
         </div>
         <div class="principle reveal">
           <span class="num">04</span>
-          <h4>Sicurezza &amp; trasparenza</h4>
-          <p>Policy e processi chiari, disclosure responsabile.</p>
+          <h4 data-i18n="p4.title">Security &amp; transparency</h4>
+          <p data-i18n="p4.desc">Clear policies and processes, responsible disclosure.</p>
         </div>
       </div>
     </section>
@@ -222,14 +209,14 @@
     <section id="founders" class="section">
       <div class="section-head reveal">
         <span class="section-label">// founders</span>
-        <h2>Chi c’è dietro</h2>
-        <p>Due amici, una passione per il software fatto bene.</p>
+        <h2 data-i18n="founders.title">Who’s behind it</h2>
+        <p data-i18n="founders.lead">Two friends who share a passion for well-made software.</p>
       </div>
 
       <div class="founders">
         <a class="founder reveal" href="https://github.com/giosci1994" target="_blank" rel="noreferrer">
-          <img src="https://github.com/giosci1994.png?size=144" alt="Avatar di Giovanni" width="72" height="72"
-            loading="lazy" />
+          <img src="https://github.com/giosci1994.png?size=144" alt="Giovanni’s avatar" width="72" height="72"
+            loading="lazy" data-i18n-alt="founders.alt.giovanni" />
           <div class="founder-info">
             <h4>Giovanni</h4>
             <span class="handle">@giosci1994</span>
@@ -238,8 +225,8 @@
         </a>
 
         <a class="founder reveal" href="https://github.com/chopin94" target="_blank" rel="noreferrer">
-          <img src="https://github.com/chopin94.png?size=144" alt="Avatar di Baldo" width="72" height="72"
-            loading="lazy" />
+          <img src="https://github.com/chopin94.png?size=144" alt="Baldo’s avatar" width="72" height="72"
+            loading="lazy" data-i18n-alt="founders.alt.baldo" />
           <div class="founder-info">
             <h4>Baldo</h4>
             <span class="handle">@chopin94</span>
@@ -253,51 +240,51 @@
       <div class="section-head reveal">
         <span class="section-label">// community</span>
         <h2>Community</h2>
-        <p>Domande, idee, bug e PR: tutto al posto giusto.</p>
+        <p data-i18n="community.lead">Questions, ideas, bugs and PRs: everything in its right place.</p>
       </div>
 
       <div class="community-grid">
         <article class="card reveal">
           <div class="card-top">
             <h3>Discussions</h3>
-            <p>Idee, roadmap, domande e supporto generale.</p>
+            <p data-i18n="discussions.desc">Ideas, roadmap, questions and general support.</p>
           </div>
           <div class="card-actions">
             <a class="btn primary small" href="https://github.com/orgs/arborae/discussions" target="_blank"
-              rel="noreferrer">Apri Discussions</a>
+              rel="noreferrer" data-i18n="discussions.open">Open Discussions</a>
           </div>
         </article>
 
         <article class="card reveal">
           <div class="card-top">
             <h3>Issues</h3>
-            <p>Bug e feature request con template guidati.</p>
+            <p data-i18n="issues.desc">Bug reports and feature requests with guided templates.</p>
           </div>
           <div class="card-actions">
             <a class="btn ghost small" href="https://github.com/arborae?tab=repositories" target="_blank"
-              rel="noreferrer">Scegli repo</a>
+              rel="noreferrer" data-i18n="issues.pick">Pick a repo</a>
           </div>
         </article>
 
         <article class="card reveal">
           <div class="card-top">
             <h3>Security</h3>
-            <p>Segnalazioni responsabili e policy comune.</p>
+            <p data-i18n="security.short">Responsible disclosure and a shared policy.</p>
           </div>
           <div class="card-actions">
             <a class="btn ghost small" href="https://github.com/arborae/.github/blob/main/SECURITY.md" target="_blank"
-              rel="noreferrer">Leggi policy</a>
+              rel="noreferrer" data-i18n="policy.read">Read the policy</a>
           </div>
         </article>
       </div>
 
       <div class="cta-box reveal">
         <div>
-          <h3>Vuoi dare una mano?</h3>
-          <p>Anche una PR piccola è benvenuta. Se vuoi, parti da una issue “good first issue”.</p>
+          <h3 data-i18n="cta.title">Want to help out?</h3>
+          <p data-i18n="cta.desc">Even a small PR is welcome. If you like, start from a “good first issue”.</p>
         </div>
         <a class="btn primary" href="https://github.com/arborae?tab=repositories" target="_blank"
-          rel="noreferrer">Esplora i repo</a>
+          rel="noreferrer" data-i18n="cta.explore">Explore the repos</a>
       </div>
     </section>
 
@@ -314,26 +301,7 @@
     </footer>
   </main>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const reveals = document.querySelectorAll('.reveal');
-
-    if (reduceMotion || !('IntersectionObserver' in window)) {
-      reveals.forEach(el => el.classList.add('visible'));
-    } else {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-      reveals.forEach(el => io.observe(el));
-    }
-  </script>
+  <script src="assets/i18n.js"></script>
 </body>
 
 </html>

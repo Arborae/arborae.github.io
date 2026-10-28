@@ -28,8 +28,9 @@ Dark-first, responsive, zero build step.</p>
 ## ✨ Highlights
 
 - 🌱 **Org landing** — one page presenting Arborae: featured projects, principles, founders and community links.
+- 🌍 **English & Italian** — English by default, Italian with the IT/EN switch (or automatically for browsers set to Italian); the choice is remembered.
 - 🌙 **Dark-first** design with a subtle animated grid and a terminal mock in the hero.
-- ⚡ **Zero build step** — plain HTML + CSS + a few lines of vanilla JS (year + `IntersectionObserver` reveals).
+- ⚡ **Zero build step** — plain HTML + CSS + a small vanilla JS file (translations, year + `IntersectionObserver` reveals).
 - 📱 **Responsive & accessible** — mobile-friendly layout, `prefers-reduced-motion` aware animations, ARIA labels.
 - 🔍 **SEO & social ready** — description, Open Graph + Twitter cards, social preview image and an SVG favicon.
 
@@ -37,16 +38,17 @@ Dark-first, responsive, zero build step.</p>
 
 - **HTML5** (single page, semantic)
 - **CSS3** — custom properties, grid/flex, dark theme, no framework
-- **Vanilla JS** (inline) — footer year + reveal-on-scroll
+- **Vanilla JS** (`assets/i18n.js`) — EN/IT translations, footer year + reveal-on-scroll
 - **Fonts**: Space Grotesk · Inter · JetBrains Mono (Google Fonts)
 - **Hosting**: GitHub Pages (deploy from `main`, root)
 
 ## 🧩 Project structure
 
 ```
-index.html          the whole landing page (hero, projects, principles, founders, community)
+index.html          the whole landing page (hero, projects, principles, founders, community), in English
 style.css           dark-first stylesheet
 assets/
+  i18n.js           EN/IT dictionary + language switch, footer year, reveal-on-scroll
   logo.svg          Arborae logo
   banner.svg        banner artwork
   favicon.svg       site icon
@@ -105,8 +107,9 @@ Dark-first, responsive, zero build step.
 ## ✨ In breve
 
 - 🌱 **Landing dell'org** — una pagina che presenta Arborae: progetti in evidenza, principi, founders e link alla community.
+- 🌍 **Inglese e italiano** — inglese di default, italiano con il selettore IT/EN (o in automatico per i browser in italiano); la scelta viene ricordata.
 - 🌙 Design **dark-first** con griglia animata discreta e un mock di terminale nell'hero.
-- ⚡ **Zero build step** — solo HTML + CSS + poche righe di JS vanilla (anno + reveal con `IntersectionObserver`).
+- ⚡ **Zero build step** — solo HTML + CSS + un piccolo file JS vanilla (traduzioni, anno + reveal con `IntersectionObserver`).
 - 📱 **Responsive e accessibile** — layout mobile-friendly, animazioni che rispettano `prefers-reduced-motion`, label ARIA.
 - 🔍 **Pronto per SEO e social** — description, Open Graph + Twitter card, immagine social e favicon SVG.
 
@@ -114,14 +117,15 @@ Dark-first, responsive, zero build step.
 
 - **HTML5** (single page, semantico)
 - **CSS3** con custom properties, grid/flex, tema scuro, nessun framework
-- **JS vanilla** (inline) — anno del footer + reveal allo scroll
+- **JS vanilla** (`assets/i18n.js`) — traduzioni EN/IT, anno del footer + reveal allo scroll
 - **Font**: Space Grotesk · Inter · JetBrains Mono (Google Fonts)
 - **Hosting**: GitHub Pages (deploy dal branch `main`, root)
 
 ## 🧩 Struttura
 
-- `index.html` — l'intera landing (hero, progetti, principi, founders, community)
+- `index.html` — l'intera landing (hero, progetti, principi, founders, community), in inglese
 - `style.css` — foglio di stile dark-first
+- `assets/i18n.js` — dizionario EN/IT e selettore di lingua, anno del footer, reveal allo scroll
 - `assets/` — logo, banner, favicon e immagine di social preview (+ sorgenti)
 
 ## 🛠️ Avvio in locale
