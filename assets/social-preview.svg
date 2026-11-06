@@ -1,13 +1,71 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
-    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#0b0f14"/><stop offset="1" stop-color="#101826"/></linearGradient>
-    <linearGradient id="acc" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#2ea043"/><stop offset="0.55" stop-color="#1f6feb"/><stop offset="1" stop-color="#8250df"/></linearGradient>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#070b0a"/>
+      <stop offset="1" stop-color="#0d1312"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#5fb3a6"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#00b585" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#00b585" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="14" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M56 0H0V56" fill="none" stroke="#ffffff" stroke-opacity="0.035"/>
+    </pattern>
   </defs>
+
+  <!-- background -->
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <circle cx="220" cy="150" r="120" fill="url(#acc)" opacity="0.14"/>
-  <circle cx="1020" cy="480" r="160" fill="url(#acc)" opacity="0.12"/>
-  <text x="96" y="220" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto" font-size="72" font-weight="800" fill="#e6edf3">Arborae</text>
-  <rect x="96" y="255" width="420" height="10" rx="5" fill="url(#acc)" opacity="0.9"/>
-  <text x="96" y="320" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto" font-size="34" fill="#c9d1d9">Clean software • Polished UIs • Smart automation • Simple DevOps</text>
-  <text x="96" y="388" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace" font-size="22" fill="#9da7b3">Pragmatic. Documented. Ship &amp; polish.</text>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- accent wave -->
+  <path d="M-40 520 C 240 440, 420 660, 760 520 C 990 435, 1100 470, 1240 390"
+        stroke="url(#acc)" stroke-width="8" fill="none" opacity="0.45" filter="url(#glow)"/>
+
+  <!-- Arborae mark, drawn large -->
+  <g transform="translate(730,135) scale(0.9)">
+    <circle cx="200" cy="200" r="195" fill="url(#halo)"/>
+    <circle cx="200" cy="200" r="150" fill="none" stroke="url(#acc)" stroke-width="2" opacity="0.55"/>
+    <circle cx="200" cy="200" r="105" fill="url(#acc)"/>
+    <g stroke="#ffffff" stroke-width="9" stroke-linecap="round">
+      <line x1="201" y1="151" x2="201" y2="246"/>
+      <line x1="138" y1="216" x2="201" y2="246"/>
+      <line x1="262" y1="216" x2="201" y2="246"/>
+    </g>
+    <g fill="#ffffff">
+      <circle cx="201" cy="151" r="10"/>
+      <circle cx="138" cy="216" r="10"/>
+      <circle cx="262" cy="216" r="10"/>
+    </g>
+    <rect x="192" y="252" width="17" height="68" rx="8.5" fill="#4f4f4f"/>
+  </g>
+
+  <!-- text block -->
+  <text x="80" y="150" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+        font-size="20" letter-spacing="4" fill="#34d399">// OPEN-SOURCE ORGANIZATION</text>
+
+  <text x="76" y="240" font-family="'Space Grotesk', Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, sans-serif"
+        font-size="76" font-weight="700" letter-spacing="-1.5">
+    <tspan fill="url(#acc)">Clean</tspan><tspan fill="#eef4f2">, modular,</tspan>
+  </text>
+  <text x="76" y="325" font-family="'Space Grotesk', Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, sans-serif"
+        font-size="76" font-weight="700" letter-spacing="-1.5" fill="#eef4f2">reliable software.</text>
+
+  <text x="80" y="390" font-family="Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, sans-serif"
+        font-size="26" fill="#9db3ad">Polished UIs • Smart automation • Simple DevOps</text>
+
+  <text x="80" y="452" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+        font-size="17" fill="#64756f">arborae.github.io — Pragmatic · Documented · Ship &amp; polish.</text>
+
+  <rect x="80" y="474" width="140" height="6" rx="3" fill="url(#acc)"/>
 </svg>

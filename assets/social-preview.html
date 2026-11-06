@@ -1,6 +1,6 @@
 <!doctype html>
-<!-- Sorgente della social preview: renderizzare a 1200x630 in assets/social-preview.png
-     es. firefox &#45;&#45;headless &#45;&#45;screenshot social-preview.png &#45;&#45;window-size=1200,630 <url> -->
+<!-- Source of the social preview: render at 1200x630 to assets/social-preview.png
+     e.g. msedge --headless --screenshot=social-preview.png --window-size=1200,630 <url> -->
 <html lang="en">
 
 <head>
@@ -34,34 +34,37 @@
         linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
       background-size: 56px 56px;
-      -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, black 30%, transparent 85%);
-      mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, black 30%, transparent 85%);
+    }
+
+    .deco { position: absolute; inset: 0; }
+
+    .mark {
+      position: absolute;
+      right: 110px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 360px;
+      height: 360px;
     }
 
     .content {
       position: relative;
-      padding: 0 90px;
+      padding: 0 80px;
       display: flex;
       flex-direction: column;
-      gap: 34px;
+      gap: 26px;
+      max-width: 800px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .brand img { width: 84px; height: 84px; }
-
-    .brand span {
-      font-size: 54px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+    .kicker {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      font-size: 20px;
+      letter-spacing: 4px;
+      color: #34d399;
     }
 
     h1 {
-      font-size: 66px;
+      font-size: 76px;
       font-weight: 700;
       letter-spacing: -0.025em;
       line-height: 1.08;
@@ -75,25 +78,79 @@
     }
 
     .sub {
-      font-family: 'JetBrains Mono', Consolas, monospace;
-      font-size: 24px;
+      font-size: 26px;
       color: #9db3ad;
-      letter-spacing: 0.01em;
     }
 
-    .sub b { color: #5fb3a6; font-weight: 600; }
+    .foot {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      font-size: 17px;
+      color: #64756f;
+      white-space: nowrap;
+    }
+
+    .bar {
+      width: 140px;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #34d399, #5fb3a6);
+    }
   </style>
 </head>
 
 <body>
   <div class="grid"></div>
+
+  <!-- accent wave -->
+  <svg class="deco" viewBox="0 0 1200 630" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="acc" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0" stop-color="#34d399"/>
+        <stop offset="1" stop-color="#5fb3a6"/>
+      </linearGradient>
+      <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="14" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <path d="M-40 520 C 240 440, 420 660, 760 520 C 990 435, 1100 470, 1240 390"
+          stroke="url(#acc)" stroke-width="8" fill="none" opacity="0.45" filter="url(#glow)"/>
+  </svg>
+
+  <!-- Arborae mark, drawn large -->
+  <svg class="mark" viewBox="0 0 400 400">
+    <defs>
+      <linearGradient id="macc" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0" stop-color="#34d399"/>
+        <stop offset="1" stop-color="#5fb3a6"/>
+      </linearGradient>
+      <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0" stop-color="#00b585" stop-opacity="0.30"/>
+        <stop offset="1" stop-color="#00b585" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle cx="200" cy="200" r="195" fill="url(#halo)"/>
+    <circle cx="200" cy="200" r="150" fill="none" stroke="url(#macc)" stroke-width="2" opacity="0.55"/>
+    <circle cx="200" cy="200" r="105" fill="url(#macc)"/>
+    <g stroke="#ffffff" stroke-width="9" stroke-linecap="round">
+      <line x1="201" y1="151" x2="201" y2="246"/>
+      <line x1="138" y1="216" x2="201" y2="246"/>
+      <line x1="262" y1="216" x2="201" y2="246"/>
+    </g>
+    <g fill="#ffffff">
+      <circle cx="201" cy="151" r="10"/>
+      <circle cx="138" cy="216" r="10"/>
+      <circle cx="262" cy="216" r="10"/>
+    </g>
+    <rect x="192" y="252" width="17" height="68" rx="8.5" fill="#4f4f4f"/>
+  </svg>
+
   <div class="content">
-    <div class="brand">
-      <img src="logo.svg" alt="" />
-      <span>Arborae</span>
-    </div>
+    <span class="kicker">// OPEN-SOURCE ORGANIZATION</span>
     <h1><span class="accent">Clean</span>, modular,<br>reliable software.</h1>
-    <p class="sub">Polished UIs <b>•</b> Smart automation <b>•</b> Simple DevOps</p>
+    <p class="sub">Polished UIs &bull; Smart automation &bull; Simple DevOps</p>
+    <p class="foot">arborae.github.io — Pragmatic &middot; Documented &middot; Ship &amp; polish.</p>
+    <div class="bar"></div>
   </div>
 </body>
 
