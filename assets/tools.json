@@ -3,5 +3,18 @@
     "arborae-page",
     "arborae-pagina"
   ],
-  "tools": []
+  "tools": [
+    {
+      "name": "aiuto-risiko",
+      "title": "Aiuto Risiko",
+      "description": "Phone companion for a RisiKo! game night: guided setup, turns, reinforcements and conquest odds (unofficial, Italian).",
+      "url": "https://arborae.github.io/aiuto-risiko/",
+      "repo": "https://github.com/Arborae/aiuto-risiko",
+      "categories": [
+        "games"
+      ],
+      "license": null,
+      "updated_at": "2026-11-23"
+    }
+  ]
 }
