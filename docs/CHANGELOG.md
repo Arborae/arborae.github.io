@@ -2,6 +2,12 @@
 
 All notable structural changes to `arborae.github.io` are documented in this file.
 
+## [2026-11-23] — PolyForm License Detection Fallback
+
+### Changed
+- `scripts/update_tools.py`: when GitHub reports a repository license as `NOASSERTION` (such as PolyForm licenses), fetch `/repos/<org>/<repo>/license` and match known license headers (`PolyForm-Noncommercial-1.0.0`, etc.) so the license badge renders accurately in `assets/tools.json`.
+- `assets/tools.json`: updated with resolved `PolyForm-Noncommercial-1.0.0` license for `aiuto-risiko`.
+
 ## [2026-11-22] — Automatic Web Tools Index
 
 ### Added

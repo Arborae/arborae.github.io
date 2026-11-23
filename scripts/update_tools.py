@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import argparse
+import base64
+from collections.abc import Callable
 import json
 import os
 import re
@@ -15,6 +17,36 @@ INDEX_TOPICS = ("arborae-page", "arborae-pagina")
 EXCLUDED_REPOS = {".github", "arborae.github.io"}
 API_BASE = "https://api.github.com"
 NEXT_LINK_RE = re.compile(r'<([^>]+)>\s*;\s*rel=["\']next["\']')
+CUSTOM_LICENSE_PATTERNS: tuple[tuple[re.Pattern[str], str], ...] = (
+    (re.compile(r"^\s*#*\s*PolyForm Noncommercial License 1\.0\.0\b", re.IGNORECASE), "PolyForm-Noncommercial-1.0.0"),
+    (re.compile(r"^\s*#*\s*PolyForm Small Business License 1\.0\.0\b", re.IGNORECASE), "PolyForm-Small-Business-1.0.0"),
+    (re.compile(r"^\s*#*\s*PolyForm Strict License 1\.0\.0\b", re.IGNORECASE), "PolyForm-Strict-1.0.0"),
+    (re.compile(r"^\s*#*\s*PolyForm Shield License 1\.0\.0\b", re.IGNORECASE), "PolyForm-Shield-1.0.0"),
+)
+
+
+def build_headers(token: str | None = None) -> dict[str, str]:
+    """Build standard GitHub REST API request headers."""
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "arborae-tools-indexer",
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    return headers
+
+
+def detect_custom_license(license_text: str | None) -> str | None:
+    """Identify known licenses that GitHub reports as NOASSERTION from the LICENSE header."""
+    if not license_text:
+        return None
+    non_empty_lines = [line for line in license_text.splitlines() if line.strip()][:5]
+    for line in non_empty_lines:
+        for pattern, license_id in CUSTOM_LICENSE_PATTERNS:
+            if pattern.search(line):
+                return license_id
+    return None
 
 
 def parse_next_link(link_header: str | None) -> str | None:
@@ -65,7 +97,11 @@ def is_eligible_repo(repo: dict) -> bool:
     return any(topic in INDEX_TOPICS for topic in topics)
 
 
-def extract_tool(repo: dict, org: str) -> dict:
+def extract_tool(
+    repo: dict,
+    org: str,
+    license_resolver: Callable[[str], str | None] | None = None,
+) -> dict:
     """Map a GitHub repository payload into the normalized tool entry schema."""
     topics = [
         topic.strip()
@@ -74,9 +110,12 @@ def extract_tool(repo: dict, org: str) -> dict:
     ]
     categories = sorted({topic for topic in topics if topic not in INDEX_TOPICS})
 
+    name = repo["name"]
     license_info = repo.get("license")
     spdx = license_info.get("spdx_id") if isinstance(license_info, dict) else None
     license_id = spdx if spdx and spdx != "NOASSERTION" else None
+    if license_id is None and license_resolver is not None:
+        license_id = license_resolver(name)
 
     pushed_at = repo.get("pushed_at")
     updated_at = (
@@ -85,7 +124,6 @@ def extract_tool(repo: dict, org: str) -> dict:
         else None
     )
 
-    name = repo["name"]
     return {
         "name": name,
         "title": format_title(name),
@@ -98,9 +136,17 @@ def extract_tool(repo: dict, org: str) -> dict:
     }
 
 
-def build_tools_payload(repos: list[dict], org: str = "Arborae") -> dict:
+def build_tools_payload(
+    repos: list[dict],
+    org: str = "Arborae",
+    license_resolver: Callable[[str], str | None] | None = None,
+) -> dict:
     """Filter, transform, and deterministically sort tool entries."""
-    tools = [extract_tool(repo, org) for repo in repos if is_eligible_repo(repo)]
+    tools = [
+        extract_tool(repo, org, license_resolver=license_resolver)
+        for repo in repos
+        if is_eligible_repo(repo)
+    ]
     tools.sort(key=lambda item: (item["name"].lower(), item["name"]))
     return {
         "topics": list(INDEX_TOPICS),
@@ -111,13 +157,7 @@ def build_tools_payload(repos: list[dict], org: str = "Arborae") -> dict:
 def fetch_repos(org: str, token: str | None = None) -> list[dict]:
     """Fetch all public repositories for an organization via GitHub REST API."""
     url: str | None = f"{API_BASE}/orgs/{org}/repos?type=public&per_page=100"
-    headers = {
-        "Accept": "application/vnd.github+json",
-        "User-Agent": "arborae-tools-indexer",
-        "X-GitHub-Api-Version": "2022-11-28",
-    }
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
+    headers = build_headers(token)
 
     repos: list[dict] = []
     while url:
@@ -129,6 +169,25 @@ def fetch_repos(org: str, token: str | None = None) -> list[dict]:
             repos.extend(data)
             url = parse_next_link(response.headers.get("Link"))
     return repos
+
+
+def fetch_license_text(org: str, repo_name: str, token: str | None = None) -> str | None:
+    """Fetch and decode the LICENSE file text for a repository, returning None on error."""
+    url = f"{API_BASE}/repos/{org}/{repo_name}/license"
+    request = urllib.request.Request(url, headers=build_headers(token))
+    try:
+        with urllib.request.urlopen(request, timeout=15) as response:
+            data = json.loads(response.read().decode("utf-8"))
+    except (urllib.error.HTTPError, urllib.error.URLError, ValueError, json.JSONDecodeError):
+        return None
+
+    encoded = data.get("content") if isinstance(data, dict) else None
+    if not isinstance(encoded, str) or not encoded.strip():
+        return None
+    try:
+        return base64.b64decode(encoded).decode("utf-8", errors="replace")
+    except (ValueError, base64.binascii.Error):
+        return None
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -165,7 +224,14 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Error fetching repositories for {args.org}: {exc}", file=sys.stderr)
         return 1
 
-    payload = build_tools_payload(repos, org=args.org)
+    def resolve_custom_license(repo_name: str) -> str | None:
+        return detect_custom_license(fetch_license_text(args.org, repo_name, token=token))
+
+    payload = build_tools_payload(
+        repos,
+        org=args.org,
+        license_resolver=resolve_custom_license,
+    )
     rendered = json.dumps(payload, indent=2, ensure_ascii=False) + "\n"
 
     if args.dry_run:
