@@ -5,6 +5,7 @@
   const I18N = {
     en: {
       'nav.projects': 'Projects',
+      'nav.tools': 'Tools',
       'nav.principles': 'Principles',
       'hero.title': '<span class="accent-text">Clean</span>, modular,<br>reliable software.',
       'hero.lead': 'We build useful projects that are a pleasure to use and easy to maintain — with a healthy obsession for clear UX, smart automation and simple DevOps.',
@@ -13,6 +14,18 @@
       'projects.title': 'Featured projects',
       'projects.lead': 'Our main repositories, built for real-world use and easy maintenance.',
       'd2ha.desc': 'Know when your containers have updates, read the release notes of the exact version, update them safely and read their logs — with a lightweight web UI and a native Home Assistant integration via HACS.',
+      'tools.label': '// tools',
+      'tools.title': 'Web tools',
+      'tools.lead': 'Small, standalone web utilities and pages published from Arborae repositories.',
+      'tools.filters.label': 'Filter tools by category',
+      'tools.all': 'All',
+      'tools.open': 'Open',
+      'tools.repo': 'Repo',
+      'tools.loading': 'Loading tools…',
+      'tools.no_desc': 'No description provided.',
+      'tools.empty.title': 'No web tools published yet',
+      'tools.empty.desc': 'Every public Arborae repository tagged with the arborae-page topic will appear here automatically.',
+      'tools.error': 'Unable to load the tools index right now.',
       'contrib.title': 'Contributing',
       'contrib.desc': 'Small, focused PRs, up-to-date docs, quick reviews. If something is confusing, to us it’s a bug.',
       'security.title': 'Security',
@@ -46,6 +59,7 @@
     },
     it: {
       'nav.projects': 'Progetti',
+      'nav.tools': 'Strumenti',
       'nav.principles': 'Principi',
       'hero.title': 'Software <span class="accent-text">pulito</span>,<br>modulare e affidabile.',
       'hero.lead': 'Costruiamo progetti utili, belli da usare e facili da mantenere — con un’ossessione sana per UX chiare, automazioni intelligenti e DevOps semplici.',
@@ -54,6 +68,18 @@
       'projects.title': 'Progetti in evidenza',
       'projects.lead': 'Repository principali, con obiettivo utilità reale e manutenzione semplice.',
       'd2ha.desc': 'Sapere quando i tuoi container hanno aggiornamenti, leggere le release notes della versione esatta, aggiornarli in sicurezza e consultare i log — con una web UI leggera e un’integrazione Home Assistant nativa via HACS.',
+      'tools.label': '// strumenti',
+      'tools.title': 'Strumenti web',
+      'tools.lead': 'Piccole utilità e pagine web autonome pubblicate dai repository Arborae.',
+      'tools.filters.label': 'Filtra gli strumenti per categoria',
+      'tools.all': 'Tutti',
+      'tools.open': 'Apri',
+      'tools.repo': 'Repo',
+      'tools.loading': 'Caricamento strumenti…',
+      'tools.no_desc': 'Nessuna descrizione disponibile.',
+      'tools.empty.title': 'Nessuno strumento web pubblicato finora',
+      'tools.empty.desc': 'Ogni repository pubblico di Arborae con il topic arborae-page apparirà qui automaticamente.',
+      'tools.error': 'Impossibile caricare l’indice degli strumenti in questo momento.',
       'contrib.title': 'Contribuire',
       'contrib.desc': 'PR piccole e mirate, documentazione aggiornata, review rapide. Se qualcosa confonde, per noi è un bug.',
       'security.title': 'Sicurezza',
@@ -87,9 +113,23 @@
     }
   };
 
+  let currentLang = 'en';
+
+  function translate(key) {
+    const dict = I18N[currentLang] || I18N.en;
+    return key in dict ? dict[key] : (I18N.en[key] || key);
+  }
+
+  window.arboraeI18n = {
+    getLang: () => currentLang,
+    t: translate
+  };
+
   function setLang(lang, remember) {
-    const dict = I18N[lang] || I18N.en;
-    document.documentElement.lang = lang;
+    const resolved = lang in I18N ? lang : 'en';
+    currentLang = resolved;
+    const dict = I18N[resolved];
+    document.documentElement.lang = resolved;
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (!(key in dict)) return;
@@ -100,17 +140,22 @@
       const key = el.getAttribute('data-i18n-alt');
       if (key in dict) el.setAttribute('alt', dict[key]);
     });
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+      const key = el.getAttribute('data-i18n-aria-label');
+      if (key in dict) el.setAttribute('aria-label', dict[key]);
+    });
     const md = document.querySelector('meta[name="description"]');
     if (md) md.setAttribute('content', dict['_meta.desc']);
     ['it', 'en'].forEach(l => {
       const b = document.getElementById('lang-' + l);
       if (!b) return;
-      b.classList.toggle('active', l === lang);
-      b.setAttribute('aria-pressed', String(l === lang));
+      b.classList.toggle('active', l === resolved);
+      b.setAttribute('aria-pressed', String(l === resolved));
     });
     if (remember) {
-      try { localStorage.setItem('lang', lang); } catch (e) { }
+      try { localStorage.setItem('lang', resolved); } catch (e) { }
     }
+    window.dispatchEvent(new CustomEvent('arborae:langchange', { detail: { lang: resolved } }));
   }
 
   ['it', 'en'].forEach(l => {

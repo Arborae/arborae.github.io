@@ -25,10 +25,11 @@ Dark-first, responsive, zero build step.</p>
 
 ## ✨ Highlights
 
-- 🌱 **Org landing** — one page presenting Arborae: featured projects, principles, founders and community links.
+- 🌱 **Org landing** — one page presenting Arborae: featured projects, web tools, principles, founders and community links.
+- 🧰 **Tools auto-index** — public Arborae repositories tagged with `arborae-page` (or `arborae-pagina`) are indexed automatically into `assets/tools.json` and rendered with category filters.
 - 🌍 **English & Italian** — English by default, Italian with the IT/EN switch (or automatically for browsers set to Italian); the choice is remembered.
 - 🌙 **Dark-first** design with a subtle animated grid and a terminal mock in the hero.
-- ⚡ **Zero build step** — plain HTML + CSS + a small vanilla JS file (translations, year + `IntersectionObserver` reveals).
+- ⚡ **Zero build step** — plain HTML + CSS + vanilla JS (`assets/i18n.js`, `assets/tools.js`).
 - 📱 **Responsive & accessible** — mobile-friendly layout, `prefers-reduced-motion` aware animations, ARIA labels.
 - 🔍 **SEO & social ready** — description, Open Graph + Twitter cards, social preview image and an SVG favicon.
 
@@ -36,21 +37,45 @@ Dark-first, responsive, zero build step.</p>
 
 - **HTML5** (single page, semantic)
 - **CSS3** — custom properties, grid/flex, dark theme, no framework
-- **Vanilla JS** (`assets/i18n.js`) — EN/IT translations, footer year + reveal-on-scroll
+- **Vanilla JS** (`assets/i18n.js`, `assets/tools.js`) — EN/IT translations, footer year, reveal-on-scroll and dynamic Tools grid
+- **Indexer**: Python 3 stdlib (`scripts/update_tools.py`) + GitHub Actions (`.github/workflows/update-tools.yml`)
 - **Fonts**: Space Grotesk · Inter · JetBrains Mono (Google Fonts)
 - **Hosting**: GitHub Pages (deploy from `main`, root)
 
 ## 🧩 Project structure
 
 ```
-index.html          the whole landing page (hero, projects, principles, founders, community), in English
-style.css           dark-first stylesheet
+index.html                   the whole landing page (hero, projects, tools, principles, founders, community), in English
+style.css                    dark-first stylesheet
 assets/
-  i18n.js           EN/IT dictionary + language switch, footer year, reveal-on-scroll
-  logo.svg          Arborae logo
-  banner.svg        banner artwork
-  favicon.svg       site icon
-  social-preview.*  Open Graph image (.png) + its source (.html / .svg)
+  i18n.js                    EN/IT dictionary + language switch, footer year, reveal-on-scroll
+  tools.js                   fetches assets/tools.json, builds category filters and tool cards safely via DOM APIs
+  tools.json                 auto-generated index of Arborae public web tools
+  logo.svg                   Arborae logo
+  banner.svg                 banner artwork
+  favicon.svg                site icon
+  social-preview.*           Open Graph image (.png) + its source (.html / .svg)
+scripts/
+  update_tools.py            stdlib Python script querying the GitHub API to refresh assets/tools.json
+.github/workflows/
+  update-tools.yml           scheduled & dispatch workflow keeping assets/tools.json up to date
+docs/
+  CHANGELOG.md               structural change log
+```
+
+## 🧰 Tools auto-index
+
+Any public, non-archived, non-template repository in the `Arborae` GitHub organization tagged with the `arborae-page` (or `arborae-pagina`) topic is indexed automatically into `assets/tools.json`:
+
+- Additional repository topics become filterable category badges on the landing page.
+- Live URL resolves from the repository `homepage` field (if `http://` or `https://`), otherwise `https://arborae.github.io/<repo>/` when GitHub Pages is enabled, or the repository URL as fallback.
+- `.github/workflows/update-tools.yml` refreshes `assets/tools.json` daily (`03:00 UTC`), on `workflow_dispatch`, or on `repository_dispatch` (`tools-updated`).
+
+To preview or update the index locally (no external dependencies):
+
+```bash
+python3 scripts/update_tools.py --dry-run
+python3 scripts/update_tools.py
 ```
 
 ## 🛠️ Run locally

@@ -464,6 +464,79 @@ a { color: inherit; text-decoration: none; }
   flex-wrap: wrap;
 }
 
+/* --- Tools --- */
+.tools-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.tools-filters[hidden] { display: none; }
+
+.filter-pill {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.filter-pill:hover {
+  color: var(--text);
+  border-color: var(--border-hover);
+  background: var(--panel-hover);
+}
+
+.filter-pill.active {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #04110d;
+  font-weight: 600;
+}
+
+.filter-pill:focus-visible {
+  outline: 2px solid var(--brand-soft);
+  outline-offset: 2px;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.tool-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tool-badges .badge { margin-bottom: 0; }
+
+.tool-meta {
+  color: var(--dim);
+  margin: 14px 0 0;
+  font-size: 0.75rem;
+}
+
+.tool-bottom .card-actions { margin-top: 16px; }
+.tools-grid .card-top p:last-child { margin-bottom: 0; }
+.tools-empty { grid-column: 1 / -1; }
+
+.tools-loading {
+  grid-column: 1 / -1;
+  color: var(--dim);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
 /* --- Principles --- */
 .principles {
   display: grid;
@@ -620,6 +693,8 @@ a { color: inherit; text-decoration: none; }
   .bento { grid-template-columns: 1fr 1fr; }
   .card.wide { grid-column: span 2; }
 
+  .tools-grid { grid-template-columns: 1fr 1fr; }
+
   .principles { grid-template-columns: 1fr 1fr; }
 }
 
@@ -633,6 +708,8 @@ a { color: inherit; text-decoration: none; }
 
   .bento { grid-template-columns: 1fr; }
   .card.wide { grid-column: span 1; }
+
+  .tools-grid { grid-template-columns: 1fr; }
 
   .principles { grid-template-columns: 1fr; }
 
